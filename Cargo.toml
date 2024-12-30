@@ -7,7 +7,7 @@ license = "MIT"             # 项目许可证
 
 [dependencies]
 # Bellman 库，启用 CUDA 支持
-bellman = { git = "https://github.com/filecoin-project/bellman" }
+bellman = { git = "https://github.com/filecoin-project/bellperson" }
 
 # pairing 是 Bellman 的依赖，用于曲线操作
 pairing = { git = "https://github.com/zkcrypto/pairing" }
