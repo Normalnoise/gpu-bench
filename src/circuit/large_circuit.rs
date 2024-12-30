@@ -1,5 +1,6 @@
 use bellperson::{Circuit, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
+use ff::{Field, PrimeField}; // 引入 Field 和 PrimeField trait
 use rand::thread_rng;
 
 pub struct LargeCircuit {
@@ -7,7 +8,6 @@ pub struct LargeCircuit {
 }
 
 impl LargeCircuit {
-    /// 创建具有随机输入的电路
     pub fn new(size: usize) -> Self {
         let inputs = (0..size).map(|_| Some(Fr::random(thread_rng()))).collect();
         LargeCircuit { inputs }
