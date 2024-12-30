@@ -1,5 +1,5 @@
 use bellperson::{Circuit, ConstraintSystem, SynthesisError};
-use pairing::bls12_381::Fr;
+use blstrs::Scalar as Fr;
 use rand::thread_rng;
 
 pub struct LargeCircuit {
@@ -7,9 +7,8 @@ pub struct LargeCircuit {
 }
 
 impl LargeCircuit {
-    // 构造函数
     pub fn new(size: usize) -> Self {
-        let inputs = (0..size).map(|_| Some(Fr::random(&mut thread_rng()))).collect();
+        let inputs = (0..size).map(|_| Some(Fr::random(thread_rng()))).collect();
         LargeCircuit { inputs }
     }
 }
@@ -21,7 +20,6 @@ impl Circuit<Fr> for LargeCircuit {
     ) -> Result<(), SynthesisError> {
         let mut vars = vec![];
 
-        // 分配输入变量
         for (i, input) in self.inputs.iter().enumerate() {
             let var = cs.alloc(
                 || format!("input_{}", i),
@@ -30,7 +28,6 @@ impl Circuit<Fr> for LargeCircuit {
             vars.push(var);
         }
 
-        // 构造约束
         let mut current = vars[0];
         for i in 1..vars.len() {
             let next = cs.alloc(
@@ -49,6 +46,17 @@ impl Circuit<Fr> for LargeCircuit {
             );
             current = next;
         }
+
+        cs.alloc_input(
+            || "output",
+            || {
+                let result = self.inputs.iter().fold(Fr::one(), |acc, &val| {
+                    let val = val.unwrap_or(Fr::zero());
+                    acc * val.square()
+                });
+                Ok(result)
+            },
+        )?;
 
         Ok(())
     }
