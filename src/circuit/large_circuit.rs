@@ -1,4 +1,4 @@
-use bellman::{Circuit, ConstraintSystem, SynthesisError};
+use bellperson::{Circuit, ConstraintSystem, SynthesisError};
 use pairing::bls12_381::Fr;
 use rand::thread_rng;
 

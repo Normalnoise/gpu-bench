@@ -1,4 +1,4 @@
-use bellman::groth16::{create_random_proof, generate_random_parameters, prepare_verifying_key, verify_proof};
+use bellperson::groth16::{create_random_proof, generate_random_parameters, prepare_verifying_key, verify_proof};
 use pairing::bls12_381::Bls12;
 use std::time::Instant;
 use crate::circuit::large_circuit::LargeCircuit;
