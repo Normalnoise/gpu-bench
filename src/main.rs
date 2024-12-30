@@ -1,3 +1,6 @@
+mod circuit; // 引入模块
+
+use circuit::large_circuit::LargeCircuit; // 引入 LargeCircuit
 use bellperson::groth16::{create_random_proof, generate_random_parameters, prepare_verifying_key, verify_proof};
 use blstrs::{Bls12, Scalar as Fr};
 use ff::PrimeField; // 引入 PrimeField
@@ -22,6 +25,6 @@ fn main() {
 
     let pvk = prepare_verifying_key(&params.vk);
 
-    let is_valid = verify_proof(&pvk, &proof, &[<Bls12 as bellperson::Engine>::Fr::one()]).unwrap();
+    let is_valid = verify_proof(&pvk, &proof, &[<Bls12 as ff::PrimeField>::one()]).unwrap();
     println!("Proof is valid: {}", is_valid);
 }
