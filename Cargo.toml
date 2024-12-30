@@ -6,10 +6,11 @@ description = "A project for generating and verifying zkSNARK proofs using GPU"
 license = "MIT"             # 项目许可证
 
 [dependencies]
-bellperson = { git = "https://github.com/filecoin-project/bellperson", branch = "master"}
+bellperson = { git = "https://github.com/filecoin-project/bellperson" }
 blstrs = "0.7"
 rand = "0.8"
 log = "0.4"
+ff = "0.13" # 添加 ff 依赖
 
 [features]
 # 自定义特性
