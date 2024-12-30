@@ -7,7 +7,7 @@ license = "MIT"             # 项目许可证
 
 [dependencies]
 # Bellman 库，启用 CUDA 支持
-bellman = { git = "https://github.com/filecoin-project/bellperson" }
+bellperson = { git = "https://github.com/filecoin-project/bellperson" }
 
 # pairing 是 Bellman 的依赖，用于曲线操作
 pairing = { git = "https://github.com/zkcrypto/pairing" }
@@ -21,7 +21,7 @@ log = "0.4"
 [features]
 # 自定义特性
 default = ["cuda"]  # 默认启用 cuda 特性
-cuda = ["bellman/cuda"]  # 将 cuda 特性与 bellman 的 cuda 特性关联
+cuda = ["bellperson/cuda"]  # 将 cuda 特性与 bellman 的 cuda 特性关联
 
 [profile.release]
 # 优化设置
